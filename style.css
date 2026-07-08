@@ -1,0 +1,315 @@
+/* ============================================
+   Sweet Haven Bakery — design tokens
+   Palette:
+     --blush     #FCEEF2  (background)
+     --plum      #3A1F2B  (ink / text)
+     --berry     #C4477B  (primary accent)
+     --butter    #F2C14E  (secondary accent)
+     --mint      #7FA98F  (tertiary accent)
+     --card      #FFFBF7  (surface)
+   Type:
+     Display — "Baloo 2" (rounded, playful, bakery-sign energy)
+     Body    — "Nunito" (soft, legible)
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700&display=swap');
+
+:root {
+  --blush: #FCEEF2;
+  --plum: #3A1F2B;
+  --berry: #C4477B;
+  --berry-dark: #9C3562;
+  --butter: #F2C14E;
+  --mint: #7FA98F;
+  --card: #FFFBF7;
+  --line: rgba(58, 31, 43, 0.12);
+
+  --font-display: "Baloo 2", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--blush);
+  color: var(--plum);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* subtle dotted "sprinkle" texture on the background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle, var(--berry) 1px, transparent 1.5px),
+    radial-gradient(circle, var(--butter) 1px, transparent 1.5px);
+  background-size: 60px 60px, 80px 80px;
+  background-position: 0 0, 30px 40px;
+  opacity: 0.08;
+}
+
+a { color: inherit; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  margin: 0 0 0.4em 0;
+  letter-spacing: 0.2px;
+}
+
+p { margin: 0 0 1em 0; }
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- Nav ---------- */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(252, 238, 242, 0.88);
+  backdrop-filter: blur(6px);
+  border-bottom: 2px solid var(--line);
+}
+
+.site-nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--berry-dark);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--plum);
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  background: var(--berry);
+  color: #fff;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 72px 0 48px;
+  text-align: center;
+}
+
+.hero .eyebrow {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--berry-dark);
+  background: rgba(196, 71, 123, 0.12);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 0.85rem;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  color: var(--berry-dark);
+}
+
+.hero p.lead {
+  max-width: 560px;
+  margin: 0 auto 8px;
+  font-size: 1.1rem;
+  color: rgba(58, 31, 43, 0.8);
+}
+
+/* ---------- Cards / sections ---------- */
+.card {
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 6px 0 rgba(58, 31, 43, 0.06);
+}
+
+.section {
+  padding: 40px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.grid .card h3 { color: var(--berry-dark); }
+
+footer {
+  text-align: center;
+  padding: 32px 24px 60px;
+  color: rgba(58, 31, 43, 0.55);
+  font-size: 0.9rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- Cake counter HUD ---------- */
+#cake-hud {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 200;
+  background: var(--card);
+  border: 2px solid var(--berry);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--berry-dark);
+  font-size: 0.9rem;
+  box-shadow: 0 4px 0 rgba(58, 31, 43, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#cake-hud .hud-count {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Floating cakes ---------- */
+#cake-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.floating-cake {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  user-select: none;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 3px 4px rgba(58, 31, 43, 0.18));
+  animation-name: cake-drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.floating-cake.popping {
+  animation: none !important;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  transform: scale(1.7) rotate(20deg);
+  opacity: 0;
+}
+
+@keyframes cake-drift {
+  0%   { transform: translateY(0) translateX(0) rotate(0deg); }
+  25%  { transform: translateY(-30px) translateX(18px) rotate(8deg); }
+  50%  { transform: translateY(-4px) translateX(-14px) rotate(-6deg); }
+  75%  { transform: translateY(-40px) translateX(10px) rotate(5deg); }
+  100% { transform: translateY(0) translateX(0) rotate(0deg); }
+}
+
+/* ---------- Flag modal ---------- */
+#flag-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(58, 31, 43, 0.55);
+  padding: 20px;
+}
+
+#flag-modal.open { display: flex; }
+
+.flag-box {
+  background: var(--card);
+  border-radius: 20px;
+  border: 3px solid var(--butter);
+  max-width: 460px;
+  width: 100%;
+  padding: 32px;
+  text-align: center;
+  box-shadow: 0 10px 0 rgba(58, 31, 43, 0.15);
+}
+
+.flag-box h2 {
+  color: var(--berry-dark);
+  font-size: 1.6rem;
+}
+
+.flag-code {
+  display: block;
+  margin: 18px 0;
+  font-family: "Courier New", monospace;
+  font-size: 1.05rem;
+  background: var(--plum);
+  color: var(--butter);
+  padding: 14px;
+  border-radius: 12px;
+  word-break: break-all;
+}
+
+.flag-box button {
+  font-family: var(--font-display);
+  font-weight: 700;
+  background: var(--berry);
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.flag-box button:hover { background: var(--berry-dark); }
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-cake { animation: none !important; }
+  html { scroll-behavior: auto; }
+}
